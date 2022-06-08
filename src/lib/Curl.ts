@@ -1,33 +1,24 @@
-// import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 
 export class Curl {
-  private static INSTANCE: any;
   private request: any;
 
-  constructor(config) {
-    this.request = config;
+  constructor(request: AxiosRequestConfig) {
+    this.request = request;
   }
 
-  public static getInstance(config): any {
-    if (!Curl.INSTANCE) {
-      Curl.INSTANCE = new Curl(config);
-    }
-
-    return this.INSTANCE;
+  private getMethod = () => {
+    return `-X ${this.request.method.toUpperCase()}`;
   }
-
-  /*
 
   private getHeaders = () => {
-    let headers = this.request.headers,
-      curlHeaders = "";
+    let headers = this.request.headers;
+    let curlHeaders = "";
 
-    // get the headers concerning the appropriate method (defined in the global axios instance)
     if (headers.hasOwnProperty("common")) {
       headers = this.request.headers[this.request.method];
     }
 
-    // add any custom headers (defined upon calling methods like .get(), .post(), etc.)
     for (let property in this.request.headers) {
       if (
         !["common", "delete", "get", "head", "patch", "post", "put"].includes(
@@ -46,28 +37,6 @@ export class Curl {
     }
 
     return curlHeaders.trim();
-  }
-
-  private getMethod = () => {
-    return `-X ${this.request.method.toUpperCase()}`;
-  }
-
-  private getBody = () => {
-    if (
-      typeof this.request.data !== "undefined" &&
-      this.request.data !== "" &&
-      this.request.data !== null &&
-      this.request.method.toUpperCase() !== "GET"
-    ) {
-      let data =
-        typeof this.request.data === "object" ||
-          Object.prototype.toString.call(this.request.data) === "[object Array]"
-          ? JSON.stringify(this.request.data)
-          : this.request.data;
-      return `--data '${data}'`.trim();
-    } else {
-      return "";
-    }
   }
 
   private getUrl = () => {
@@ -116,10 +85,26 @@ export class Curl {
     return url.trim();
   }
 
-  generateCommand() {
+  private getBody = () => {
+    let data = "";
+
+    if (
+      typeof this.request.data !== "undefined" &&
+      this.request.data !== "" &&
+      this.request.data !== null &&
+      this.request.method.toUpperCase() !== "GET"
+    ) {
+      data = typeof this.request.data === "object" || Object.prototype.toString.call(this.request.data) === "[object Array]"
+        ? JSON.stringify(this.request.data)
+        : this.request.data;
+    }
+
+    return `--data '${data}'`.trim();
+  }
+
+  generateCommand = () => {
     return `curl ${this.getMethod()} "${this.getBuiltURL()}" ${this.getHeaders()} ${this.getBody()}`
       .trim()
       .replace(/\s{2,}/g, " ");
   }
-  */
 }
