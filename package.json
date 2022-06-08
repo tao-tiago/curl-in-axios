@@ -1,7 +1,7 @@
 {
   "name": "curl-in-axios",
   "version": "0.0.1",
-  "description": "",
+  "description": "Package for using axios with curl",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tao-tiago/axios-to-curl.git"
+    "url": "git@github.com:tao-tiago/curl-in-axios.git"
   },
   "keywords": [
     "axios",
@@ -27,9 +27,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tao-tiago/axios-to-curl/issues"
+    "url": "https://github.com/tao-tiago/curl-in-axios/issues"
   },
-  "homepage": "https://github.com/tao-tiago/axios-to-curl#readme",
+  "homepage": "https://github.com/tao-tiago/curl-in-axios#readme",
   "peerDependencies": {
     "axios": "^0.27.0"
   },
