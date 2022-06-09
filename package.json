@@ -1,12 +1,16 @@
 {
   "name": "curl-in-axios",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Package for using axios with curl",
   "main": "dist/main.js",
+  "engines": {
+    "node": ">=14.16"
+  },
   "scripts": {
     "dev": "ts-node test/appTest.ts",
     "test": "jest --no-cache",
-    "publish": "test && tsc && npm publish"
+    "test:coverage": "jest --no-cache --coverage",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
