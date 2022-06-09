@@ -1,15 +1,9 @@
 import axios from "axios";
-import curl_axios from "../src/main";
+import curl from "../src/main";
 
-declare module "axios" {
-  export interface AxiosRequestConfig {
-    curlObject?: string;
-  }
-}
+curl(axios);
 
-curl_axios(axios);
-
-describe("Testing curlObject in Axios", () => {
+describe("Testing curl in Axios", () => {
 
   it("should return a 200 with the value 'ok-get'", async () => {
     const res = await axios.get("http://localhost:3000/");
@@ -35,7 +29,7 @@ describe("Testing curlObject in Axios", () => {
   it("should return the response with the defined curl command", async () => {
     const res = await axios.post("http://localhost:3000/", { dummy: "data-post" });
 
-    expect(res.config.curlObject).toBe(`curl -X POST "http://localhost:3000/" -H "Content-Type:application/x-www-form-urlencoded" --data '{"dummy":"data-post"}'`);
+    expect(res.config.curlCommand).toBe(`curl -X POST "http://localhost:3000/" -H "Content-Type:application/x-www-form-urlencoded" --data '{"dummy":"data-post"}'`);
   });
 
 });

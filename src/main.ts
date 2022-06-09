@@ -3,7 +3,7 @@ import { Curl } from "./lib/Curl";
 
 declare module "axios" {
   export interface AxiosRequestConfig {
-    curlObject?: string;
+    curlCommand?: string;
   }
 }
 
@@ -18,7 +18,7 @@ export default (instance: AxiosInstance, callback = defaultCallback) => {
       const curlGenerate = curl.generateCommand();
 
       Object.assign(req, {
-        curlObject: curlGenerate
+        curlCommand: curlGenerate
       });
 
     } catch (err) {
