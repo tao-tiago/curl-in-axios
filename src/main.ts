@@ -1,6 +1,12 @@
 import { AxiosInstance } from "axios";
 import { Curl } from "./lib/Curl";
 
+declare module "axios" {
+  export interface AxiosRequestConfig {
+    curlObject?: string;
+  }
+}
+
 function defaultCallback(err: string) {
   console.error(err);
 }

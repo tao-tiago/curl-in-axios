@@ -1,6 +1,6 @@
 {
   "name": "curl-in-axios",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Package for using axios with curl",
   "main": "dist/main.js",
   "engines": {
